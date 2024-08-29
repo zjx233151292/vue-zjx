@@ -3,15 +3,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // 登入页
-    {
-      path: '/login',
-      component: () => import('@/views/login/LoginPage.vue')
-    },
     // 框架页
     {
       path: '/',
-      redirect: '/login',
+      redirect: '/headJump/headJumpHomePage',
       component: () => import('@/views/layout/LayoutContainer.vue'),
       // 二级路由
       children: [
