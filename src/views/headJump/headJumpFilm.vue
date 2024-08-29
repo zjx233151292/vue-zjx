@@ -1,7 +1,7 @@
+<!-- 电影 -->
 <script setup></script>
-
 <template>
-  <router-view></router-view>
+  <div>电影</div>
 </template>
 
 <style scoped></style>

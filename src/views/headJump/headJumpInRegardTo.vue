@@ -1,7 +1,8 @@
+<!-- 关于 -->
 <script setup></script>
 
 <template>
-  <router-view></router-view>
+  <div>关于</div>
 </template>
 
 <style scoped></style>

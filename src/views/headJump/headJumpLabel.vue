@@ -1,7 +1,8 @@
+<!-- 标签 -->
 <script setup></script>
 
 <template>
-  <router-view></router-view>
+  <div>标签</div>
 </template>
 
 <style scoped></style>

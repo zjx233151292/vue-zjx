@@ -1,7 +1,8 @@
+<!-- 友链 -->
 <script setup></script>
 
 <template>
-  <router-view></router-view>
+  <div>友链</div>
 </template>
 
 <style scoped></style>

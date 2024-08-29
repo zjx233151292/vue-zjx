@@ -1,7 +1,8 @@
+<!-- 音乐 -->
 <script setup></script>
 
 <template>
-  <router-view></router-view>
+  <div>音乐</div>
 </template>
 
 <style scoped></style>

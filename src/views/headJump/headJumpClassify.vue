@@ -1,7 +1,8 @@
+<!-- 分类 -->
 <script setup></script>
 
 <template>
-  <router-view></router-view>
+  <div>分类</div>
 </template>
 
 <style scoped></style>

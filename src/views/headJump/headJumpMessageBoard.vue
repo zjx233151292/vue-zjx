@@ -1,7 +1,8 @@
+<!-- 留言板 -->
 <script setup></script>
 
 <template>
-  <router-view></router-view>
+  <div>留言板</div>
 </template>
 
 <style scoped></style>

@@ -1,7 +1,8 @@
+<!-- 归档  -->
 <script setup></script>
 
 <template>
-  <router-view></router-view>
+  <div>归档</div>
 </template>
 
 <style scoped></style>
