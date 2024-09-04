@@ -1,6 +1,17 @@
 <!-- 首页 -->
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
+// 导入记得使用  导入的是一个方法  useWengZhangStore（）
+import { useWengZhangStore } from '@/stores'
+
+// 全部文章数据
+const wenZhang = useWengZhangStore().wenZhanglest
+// 显示3个文章的数据
+const getwenZhang = useWengZhangStore().getWenZhang
+
+// 控制滑动，动态模糊的 true开启 false关闭
+const huaDon = ref(true)
+console.log(wenZhang)
 
 // 星空背景
 onMounted(() => {
@@ -116,8 +127,51 @@ onMounted(() => {
     <canvas id="canvas"></canvas>
     <!-- 正文 -->
     <div class="beiJingDiv">
-      <div class="wenZan">文章</div>
-      <div class="Yh">用户</div>
+      <!-- 文章 -->
+      <div class="wenZan">
+        <!-- el走马灯 -->
+        <el-carousel height="200px" :motion-blur="huaDon">
+          <el-carousel-item v-for="item in getwenZhang" :key="item.id">
+            <!-- 走马灯每一次循环内容 -->
+            <div class="zoMaDen">
+              <!-- 图片 -->
+              <div class="zoMaDenTP">
+                <img class="zoMaDenTPImg" :src="item.imageUrl" alt="" />
+              </div>
+              <!-- 文字 -->
+              <div class="wengZhi">
+                <div class="wengZhiDing">{{ item.shiJ }}</div>
+                <div class="wengZhiTi">{{ item.biaoTi }}</div>
+                <div class="wengZhiDi">再怎么看我也不知道怎么描述他拉！</div>
+              </div>
+            </div>
+          </el-carousel-item>
+        </el-carousel>
+        <div class="FgX"></div>
+        <div class="wengZhangAn">
+          <div>
+            <img class="wengZhang1imgTp" src="@/assets/shoYe/img/11.png" />
+          </div>
+          <div class="wengZhang1BiaoTi">
+            <div>
+              <div class="wengZhang1biaoti">标题</div>
+              <div class="wengZhang1ShiJ">时间</div>
+              <div class="wengZhang1FuBiaoTi">副标题</div>
+            </div>
+          </div>
+        </div>
+        <div class="wengZhangAn">文章2</div>
+        <div>
+          <el-pagination background layout="prev, pager, next" :total="500" />
+        </div>
+      </div>
+      <!-- 用户 -->
+      <div class="Yh">
+        <div>用户</div>
+        <div>公告</div>
+        <div>日历</div>
+        <div>观看人数</div>
+      </div>
     </div>
   </div>
 </template>
@@ -141,8 +195,7 @@ onMounted(() => {
 .beiJingDiv {
   position: absolute;
   z-index: 3;
-  background-color: wheat;
-  width: 60%;
+  width: 70%;
   height: 880px;
   display: flex;
   justify-content: space-between;
@@ -153,7 +206,109 @@ onMounted(() => {
 /* 文章 */
 .wenZan {
   width: 70%;
-  background-color: aqua;
+  height: 200px;
+  background-color: rgb(21, 21, 21, 0.7);
+  margin-right: 15px;
+  border-radius: 32px;
+  margin-top: 40px;
+}
+/* 走马灯样式 */
+.zoMaDen {
+  padding-left: 20px;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+  height: 200px;
+}
+/* 走马灯图片 */
+.zoMaDenTP {
+  width: 180px;
+  height: 180px;
+}
+.zoMaDenTPImg {
+  height: 180px;
+  width: 180px;
+  /* 1. scale-down 此值的效果等同于 none 或 contain，取决于哪个会导致更小的对象尺寸。*/
+  /* 2. none 替换内容会被缩放以完全覆盖元素的内容框，同时保持其长宽比。 */
+  /* 3. contain 替换内容会被缩放以适应元素的内容框，同时保持其长宽比。 */
+  /* 4. 替换内容会被缩放以完全覆盖元素的内容框，同时保持其长宽比。 */
+  object-fit: cover;
+  border-radius: 7px;
+}
+
+/* 文字 */
+.wengZhi {
+  width: 100%;
+  height: 180px;
+  margin-left: 50px;
+  display: grid;
+  align-items: center;
+}
+.wengZhiDing {
+  padding-top: 25px;
+  color: rgb(185, 185, 185);
+}
+.wengZhiTi {
+  padding-bottom: 10px;
+  font-size: 22px;
+  font-weight: 600;
+  color: rgb(185, 185, 185);
+}
+.wengZhiDi {
+  padding-bottom: 30px;
+  color: rgb(185, 185, 185);
+}
+
+/* 文章 */
+.wengZhangAn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 252px;
+  background-color: rgb(21, 21, 21, 0.7);
+  margin-top: 20px;
+  border-radius: 25px;
+}
+/* 文章1 */
+/* 图片 */
+.wengZhang1imgTp {
+  height: 252px;
+  width: 340px;
+  object-fit: cover;
+  border-radius: 25px 0 0 25px;
+  filter: brightness(0.75);
+}
+.wengZhang1BiaoTi {
+  width: 100%;
+  height: 252px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  margin-left: 45px;
+}
+/* 文章1标题 */
+.wengZhang1biaoti {
+  color: rgb(232, 232, 232);
+  font-size: 30px;
+  font-weight: 600;
+}
+/* 文章1时间 */
+.wengZhang1ShiJ {
+  color: rgb(133, 133, 133);
+}
+/* 文章1副标题 */
+.wengZhang1FuBiaoTi {
+  color: rgb(185, 185, 185);
+}
+
+/* 分割线 */
+.FgX {
+  margin-top: 20px;
+  height: 5px;
+  width: 100%;
+  background-color: rgb(21, 21, 21, 0.7);
+  padding-bottom: 5px;
 }
 
 /* 用户 */

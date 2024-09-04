@@ -406,6 +406,7 @@ const qieHuangBeiF = (index) => {
   display: flex;
   justify-content: space-between;
   margin-left: 44.1%;
+  margin-top: -30px;
   width: 168px;
   height: 45px;
   background-color: #dfdfdf;
@@ -423,6 +424,8 @@ const qieHuangBeiF = (index) => {
   width: 84px;
   height: 45px;
   color: #535353;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .music:hover {
@@ -441,6 +444,8 @@ const qieHuangBeiF = (index) => {
   width: 84px;
   height: 45px;
   color: #535353;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .film:hover {
