@@ -3,15 +3,53 @@
 import { onMounted, ref } from 'vue'
 // 导入记得使用  导入的是一个方法  useWengZhangStore（）
 import { useWengZhangStore } from '@/stores'
+import YunHu from '@/components/yunHudiv/yunHu.vue'
+import GongGao from '@/components/yunHudiv/gongGao.vue'
+import GuanKanRenShu from '@/components/yunHudiv/guanKanRenShu.vue'
 
 // 全部文章数据
-const wenZhang = useWengZhangStore().wenZhanglest
-// 显示3个文章的数据
-const getwenZhang = useWengZhangStore().getWenZhang
+const wenZhang = ref(useWengZhangStore())
+// 显示2个文章的数据
+const getwenZhang = ref(useWengZhangStore().getWenZhang)
 
 // 控制滑动，动态模糊的 true开启 false关闭
-const huaDon = ref(true)
-console.log(wenZhang)
+const huaDon = ref(false)
+
+// 四舍五入
+function roundAwayFromZero(num) {
+  return Math.sign(num) * Math.floor(Math.abs(num) + 0.5)
+}
+// 切换页面
+const handleCurrentChange = (newPage) => {
+  // console.log(wenZhangXs.value)
+  if (newPage === 1) {
+    // 头
+    wenZhang.value.getlistT(newPage - 1)
+    // 尾
+    wenZhang.value.getlistW(newPage + 1)
+    getwenZhang.value = wenZhang.value.getWenZhang
+    wenZhangXs.value = true
+    // console.log(wenZhangXs.value)
+  } else if (wenZhang[newPage + newPage - 1] === null) {
+    // 头
+    wenZhang.value.getlistT(newPage + newPage - 2)
+    // 尾
+    wenZhang.value.getlistW(newPage + newPage - 1)
+    getwenZhang.value = wenZhang.value.getWenZhang
+    // console.log(wenZhangXs.value)
+  } else {
+    // 头
+    wenZhang.value.getlistT(newPage + newPage - 2)
+    // 尾
+    wenZhang.value.getlistW(newPage + newPage)
+    getwenZhang.value = wenZhang.value.getWenZhang
+    wenZhangXs.value = true
+    // console.log(wenZhangXs.value)
+  }
+}
+
+// 文章显示
+const wenZhangXs = ref(true)
 
 // 星空背景
 onMounted(() => {
@@ -147,36 +185,85 @@ onMounted(() => {
             </div>
           </el-carousel-item>
         </el-carousel>
+
         <div class="FgX"></div>
+
+        <!-- 文章1 -->
         <div class="wengZhangAn">
-          <div>
-            <img class="wengZhang1imgTp" src="@/assets/shoYe/img/11.png" />
+          <div class="image-container">
+            <img class="wengZhang1imgTp" :src="getwenZhang[0].imageUrl" />
           </div>
           <div class="wengZhang1BiaoTi">
             <div>
-              <div class="wengZhang1biaoti">标题</div>
-              <div class="wengZhang1ShiJ">时间</div>
-              <div class="wengZhang1FuBiaoTi">副标题</div>
+              <div class="wengZhang1biaoti">{{ getwenZhang[0].biaoTi }}</div>
+              <div class="wengZhang1ShiJ">
+                <el-icon class="mr-1"><Calendar /></el-icon>&thinsp;
+                Created&ensp;{{ getwenZhang[0].shiJ }} &ensp; | &ensp;<el-icon
+                  class="mr-1"
+                  ><Clock /></el-icon
+                >&ensp;Updated
+                {{ getwenZhang[0].shiJ }}
+              </div>
+              <div class="wengZhang1FuBiaoTi">{{ getwenZhang[0].content }}</div>
             </div>
           </div>
         </div>
-        <div class="wengZhangAn">文章2</div>
-        <div>
-          <el-pagination background layout="prev, pager, next" :total="500" />
+
+        <!-- 文章2 -->
+        <div class="wengZhangAn" v-if="wenZhangXs">
+          <div class="wengZhang1BiaoTi">
+            <div>
+              <div class="wengZhang1biaoti">{{ getwenZhang[1].biaoTi }}</div>
+              <div class="wengZhang1ShiJ">
+                <el-icon class="mr-1"><Calendar /></el-icon>&thinsp;
+                Created&ensp;{{ getwenZhang[1].shiJ }} &ensp; | &ensp;<el-icon
+                  class="mr-1"
+                  ><Clock /></el-icon
+                >&ensp;Updated
+                {{ getwenZhang[1].shiJ }}
+              </div>
+              <div class="wengZhang1FuBiaoTi">{{ getwenZhang[1].content }}</div>
+            </div>
+          </div>
+          <div class="image-container2">
+            <img class="wengZhang2imgTp" :src="getwenZhang[1].imageUrl" />
+          </div>
+        </div>
+        <!-- 分页 -->
+        <div class="fenYe">
+          <!-- 监听el-pagination 返回值是你点击的页码 -->
+          <el-pagination
+            class="msg-pagination-container"
+            background
+            layout="prev, pager, next"
+            :total="roundAwayFromZero((wenZhang.wenZhanglest.length / 2) * 10)"
+            @current-change="handleCurrentChange"
+          />
         </div>
       </div>
+
       <!-- 用户 -->
       <div class="Yh">
-        <div>用户</div>
-        <div>公告</div>
-        <div>日历</div>
-        <div>观看人数</div>
+        <!-- 用户 -->
+        <div class="yunHudiv">
+          <YunHu></YunHu>
+        </div>
+        <!-- 公告 -->
+        <div class="gongGaodiv">
+          <GongGao></GongGao>
+        </div>
+        <!-- 日历 -->
+        <div class="riLidiv"></div>
+        <!-- 观看人数 -->
+        <div class="guanKanRenShudiv">
+          <GuanKanRenShu></GuanKanRenShu>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
-<style scoped>
+<style>
 /* 包裹背景的样式  相对  等级1 */
 .parent {
   position: relative;
@@ -273,14 +360,31 @@ onMounted(() => {
 /* 文章1 */
 /* 图片 */
 .wengZhang1imgTp {
+  max-width: 363px;
   height: 252px;
-  width: 340px;
   object-fit: cover;
   border-radius: 25px 0 0 25px;
   filter: brightness(0.75);
+  /* 填充模式 */
+  object-fit: cover;
 }
+.image-container {
+  width: 340px;
+  height: 252px;
+  border-radius: 25px 0 0 25px;
+  /* 溢出部分隐藏 */
+  overflow: hidden;
+}
+/* 图片放大 */
+.wengZhang1imgTp:hover {
+  /* 放大图片 */
+  transform: scale(1.1);
+  transition: transform 0.5s ease; /* 添加过渡效果 */
+}
+
+/* 文章正文 */
 .wengZhang1BiaoTi {
-  width: 100%;
+  width: 502px;
   height: 252px;
   text-align: left;
   display: flex;
@@ -292,14 +396,44 @@ onMounted(() => {
   color: rgb(232, 232, 232);
   font-size: 30px;
   font-weight: 600;
+  margin-bottom: 20px;
+}
+.wengZhang1biaoti:hover {
+  color: #49b1f5;
 }
 /* 文章1时间 */
 .wengZhang1ShiJ {
+  font-size: 15px;
   color: rgb(133, 133, 133);
+}
+.mr-1 {
+  position: relative;
+  top: 2px;
 }
 /* 文章1副标题 */
 .wengZhang1FuBiaoTi {
   color: rgb(185, 185, 185);
+  margin-top: 20px;
+}
+
+/* 文章2图片 */
+.wengZhang2imgTp {
+  max-width: 363px;
+  height: 252px;
+  object-fit: cover;
+  border-radius: 0 25px 25px 0;
+  filter: brightness(0.75);
+  object-fit: cover;
+}
+.image-container2 {
+  width: 340px;
+  height: 252px;
+  border-radius: 0 25px 25px 0;
+  overflow: hidden;
+}
+.wengZhang2imgTp:hover {
+  transform: scale(1.1);
+  transition: transform 0.5s ease; /* 添加过渡效果 */
 }
 
 /* 分割线 */
@@ -311,9 +445,61 @@ onMounted(() => {
   padding-bottom: 5px;
 }
 
+/* 分页 */
+.fenYe {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.msg-pagination-container.is-background .el-pager li {
+  /*对页数的样式进行修改*/
+  background-color: #101316;
+  color: #dfdfdf;
+}
+.msg-pagination-container.is-background .btn-next {
+  /*对下一页的按钮样式进行修改*/
+  background-color: #101316;
+  color: #fff;
+}
+.msg-pagination-container.is-background .btn-prev {
+  /*对上一页的按钮样式进行修改*/
+  background-color: #101316;
+  color: #fff;
+}
+.el-pagination.is-background .btn-prev:disabled {
+  background-color: #101316;
+}
+.el-pagination.is-background .btn-next:disabled {
+  background-color: #101316;
+}
+
 /* 用户 */
 .Yh {
   width: 30%;
-  background-color: brown;
+}
+/* 用户组件 */
+.yunHudiv {
+  display: grid;
+  place-items: center;
+  margin-top: 40px;
+}
+/* 公告组件 */
+.gongGaodiv {
+  display: grid;
+  place-items: center;
+  margin-top: 20px;
+}
+/* 日历组件 */
+.riLidiv {
+  display: grid;
+  place-items: center;
+  margin-top: 20px;
+}
+/* 观看人数组件 */
+.guanKanRenShudiv {
+  display: grid;
+  place-items: center;
+  margin-top: 20px;
 }
 </style>

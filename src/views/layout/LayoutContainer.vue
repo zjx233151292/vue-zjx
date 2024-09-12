@@ -403,6 +403,8 @@ const qieHuangBeiF = (index) => {
 
 /* 列表分类 */
 .leiBiao {
+  position: relative;
+  z-index: 5;
   display: flex;
   justify-content: space-between;
   margin-left: 44.1%;

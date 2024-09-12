@@ -19,3 +19,7 @@ export { useUserStore }
 // 文章
 import { useWengZhangStore } from '@/stores/modules/wenZhang.js'
 export { useWengZhangStore }
+
+// 用户信息
+import { useYunHuStore } from '@/stores/modules/yunHu.js'
+export { useYunHuStore }

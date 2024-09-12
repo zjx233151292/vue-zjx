@@ -27,21 +27,21 @@ export const useWengZhangStore = defineStore('big-wengZhang', () => {
       shiJ: '2024-09-04',
       biaoTi: '标题3',
       content: '内容3',
-      imageUrl: '/src/assets/shoYe/img/13.png',
+      imageUrl: '/src/assets/shoYe/img/25.png',
       id: 3
     },
     {
       shiJ: '2024-09-04',
       biaoTi: '标题4',
       content: '内容4',
-      imageUrl: '/src/assets/shoYe/img/14.png',
+      imageUrl: '/src/assets/shoYe/img/26.png',
       id: 4
     },
     {
       shiJ: '2024-09-04',
       biaoTi: '标题5',
       content: '内容5',
-      imageUrl: '/src/assets/shoYe/img/15.png',
+      imageUrl: '/src/assets/shoYe/img/35.png',
       id: 5
     },
     {
@@ -55,30 +55,48 @@ export const useWengZhangStore = defineStore('big-wengZhang', () => {
       shiJ: '2024-09-04',
       biaoTi: '标题7',
       content: '内容7',
-      imageUrl: '/src/assets/shoYe/img/17.png',
+      imageUrl: '/src/assets/shoYe/img/30.png',
       id: 7
     },
     {
       shiJ: '2024-09-04',
       biaoTi: '标题8',
       content: '内容8',
-      imageUrl: '/src/assets/shoYe/img/18.png',
+      imageUrl: '/src/assets/shoYe/img/29.png',
       id: 8
     },
     {
       shiJ: '2024-09-04',
       biaoTi: '标题9',
       content: '内容9',
-      imageUrl: '/src/assets/shoYe/img/19.png',
+      imageUrl: '/src/assets/shoYe/img/28.png',
       id: 9
+    },
+    {
+      shiJ: '2024-09-05',
+      biaoTi: '标题10',
+      content: '内容10',
+      imageUrl: '/src/assets/shoYe/img/20.png',
+      id: 10
     }
   ])
 
+  const listT = ref(0)
+  const listW = ref(2)
+
+  function getlistT(val) {
+    listT.value = val
+  }
+  function getlistW(val) {
+    listW.value = val
+  }
+
   // computed 计算函数
   const getWenZhang = computed(() => {
-    return wenZhanglest.value.slice(0, 3)
+    // slice() = slice[) 左闭右开 中括号带等于  小括号不带等于
+    return wenZhanglest.value.slice(listT.value, listW.value)
   })
 
   // function 这个是普通函数  异步同步都用她
-  return { wenZhanglest, getWenZhang }
+  return { wenZhanglest, getWenZhang, getlistT, getlistW }
 })
