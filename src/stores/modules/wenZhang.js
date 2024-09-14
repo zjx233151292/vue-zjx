@@ -13,70 +13,70 @@ export const useWengZhangStore = defineStore('big-wengZhang', () => {
       shiJ: '2024-09-04',
       biaoTi: '标题1',
       content: '内容1',
-      imageUrl: '/src/assets/shoYe/img/11.png',
+      imageUrl: '/public/shoYe/img/11.png',
       id: 1
     },
     {
       shiJ: '2024-09-04',
       biaoTi: '标题2',
       content: '内容2',
-      imageUrl: '/src/assets/shoYe/img/12.png',
+      imageUrl: '/public/shoYe/img/12.png',
       id: 2
     },
     {
       shiJ: '2024-09-04',
       biaoTi: '标题3',
       content: '内容3',
-      imageUrl: '/src/assets/shoYe/img/25.png',
+      imageUrl: '/public/shoYe/img/25.png',
       id: 3
     },
     {
       shiJ: '2024-09-04',
       biaoTi: '标题4',
       content: '内容4',
-      imageUrl: '/src/assets/shoYe/img/26.png',
+      imageUrl: '/public/shoYe/img/26.png',
       id: 4
     },
     {
       shiJ: '2024-09-04',
       biaoTi: '标题5',
       content: '内容5',
-      imageUrl: '/src/assets/shoYe/img/35.png',
+      imageUrl: '/public/shoYe/img/35.png',
       id: 5
     },
     {
       shiJ: '2024-09-04',
       biaoTi: '标题6',
       content: '内容6',
-      imageUrl: '/src/assets/shoYe/img/16.png',
+      imageUrl: '/public/shoYe/img/16.png',
       id: 6
     },
     {
       shiJ: '2024-09-04',
       biaoTi: '标题7',
       content: '内容7',
-      imageUrl: '/src/assets/shoYe/img/30.png',
+      imageUrl: '/public/shoYe/img/30.png',
       id: 7
     },
     {
       shiJ: '2024-09-04',
       biaoTi: '标题8',
       content: '内容8',
-      imageUrl: '/src/assets/shoYe/img/29.png',
+      imageUrl: '/public/shoYe/img/29.png',
       id: 8
     },
     {
       shiJ: '2024-09-04',
       biaoTi: '标题9',
       content: '内容9',
-      imageUrl: '/src/assets/shoYe/img/28.png',
+      imageUrl: '/public/shoYe/img/28.png',
       id: 9
     },
     {
       shiJ: '2024-09-05',
       biaoTi: '标题10',
       content: '内容10',
-      imageUrl: '/src/assets/shoYe/img/20.png',
+      imageUrl: '/public/shoYe/img/20.png',
       id: 10
     }
   ])
@@ -97,6 +97,12 @@ export const useWengZhangStore = defineStore('big-wengZhang', () => {
     return wenZhanglest.value.slice(listT.value, listW.value)
   })
 
+  const XSS = ref(0)
+
+  function getXSS(val) {
+    XSS.value = val
+  }
+
   // function 这个是普通函数  异步同步都用她
-  return { wenZhanglest, getWenZhang, getlistT, getlistW }
+  return { wenZhanglest, getWenZhang, getlistT, getlistW, XSS, getXSS }
 })

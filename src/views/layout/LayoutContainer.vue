@@ -172,6 +172,11 @@ const qieHuangBeiF = (index) => {
     xSwZ.value = true
   }
 }
+
+const updateXSwZ = (newXSwZ) => {
+  console.log(newXSwZ)
+  xSwZ.value = newXSwZ
+}
 </script>
 
 <template>
@@ -253,7 +258,48 @@ const qieHuangBeiF = (index) => {
 
     <div>
       <!-- 二级路由出口 -->
-      <router-view></router-view>
+      <router-view
+        class="CK"
+        @update-xSwZ="updateXSwZ"
+        :xSwZ="xSwZ"
+      ></router-view>
+    </div>
+    <div class="footer DJ">
+      <div class="footer-nav">
+        <ul>
+          <li><a href="">首页</a></li>
+          <li><a href="">关于我们</a></li>
+          <li><a href="">联系我们</a></li>
+          <li><a href="">服务</a></li>
+        </ul>
+      </div>
+      <div class="footer-info">
+        <p>© 2023 Chongqing Ability Limited Company. All rights reserved.</p>
+        <p class="footer-links">
+          <a href="">隐私政策</a> | <a href="">使用条款</a> |
+          <a href="">常见问题</a>
+        </p>
+      </div>
+      <div class="footer-social">
+        <ul>
+          <li>
+            <a href=""><i class="fab fa-facebook-f"></i></a>
+          </li>
+          <li>
+            <a href=""><i class="fab fa-twitter"></i></a>
+          </li>
+          <li>
+            <a href=""><i class="fab fa-instagram"></i></a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <p>联系我们: 2330151292@qq.com</p>
+        <p class="footer-dh">电话: 184-7587-8900</p>
+      </div>
+      <div class="footer-back-to-top">
+        <a href="#top">返回顶部</a>
+      </div>
     </div>
   </div>
 </template>
@@ -267,7 +313,7 @@ const qieHuangBeiF = (index) => {
 .router-view {
   position: relative;
   width: 100%;
-  height: 880px;
+  height: 980px;
   background-image: url('../../assets/app/img/3.png');
   background-repeat: no-repeat;
   background-position: center;
@@ -535,9 +581,105 @@ const qieHuangBeiF = (index) => {
   position: relative;
   width: 100%;
   height: 430px;
-  background-image: url('../../assets/app/img/3.png');
+  background-image: url('/public/app/img/3.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+
+.footer {
+  height: 230px;
+  width: 100%;
+  background-color: rgb(25, 25, 25);
+  color: rgb(185, 185, 185);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footer-link {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+/* 导航链接样式 */
+.footer-nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-nav ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.footer-nav ul li a {
+  text-decoration: none;
+  color: rgb(185, 185, 185);
+}
+
+/* 版权信息样式 */
+.footer-info {
+  margin: 10px 0;
+}
+
+.footer-info p {
+  font-size: 12px;
+  color: #888;
+}
+
+/* 社交媒体链接样式 */
+.footer-social ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-social ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.footer-social ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+}
+
+/* 联系信息样式 */
+.footer-contact p {
+  font-size: 12px;
+  color: #888;
+  margin: 5px 0;
+}
+
+/* 返回顶部按钮样式 */
+.footer-back-to-top a {
+  text-decoration: none;
+  color: rgb(185, 185, 185);
+  font-size: 12px;
+}
+
+.footer-back-to-top a:hover {
+  text-decoration: underline;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-dh {
+  display: flex;
+  justify-content: center;
+}
+
+.CK {
+  height: 880px;
+}
+
+.DJ {
+  margin-top: 0;
 }
 </style>

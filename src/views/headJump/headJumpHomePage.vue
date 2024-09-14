@@ -1,13 +1,13 @@
 <!-- 首页 -->
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, defineEmits } from 'vue'
 // 导入记得使用  导入的是一个方法  useWengZhangStore（）
 import { useWengZhangStore } from '@/stores'
 import YunHu from '@/components/yunHudiv/yunHu.vue'
 import GongGao from '@/components/yunHudiv/gongGao.vue'
 import GuanKanRenShu from '@/components/yunHudiv/guanKanRenShu.vue'
 
-// 全部文章数据
+// 全部方法和数据
 const wenZhang = ref(useWengZhangStore())
 // 显示2个文章的数据
 const getwenZhang = ref(useWengZhangStore().getWenZhang)
@@ -50,6 +50,17 @@ const handleCurrentChange = (newPage) => {
 
 // 文章显示
 const wenZhangXs = ref(true)
+
+const leiBiaoRef = ref(null)
+
+// 父组件传值  定义事件名
+const emit = defineEmits(['update-xSwZ'])
+
+// 父组件传值
+const updateValue = () => {
+  // 父组件传值  第一个是事件名，第二个是传值
+  emit('update-xSwZ', false)
+}
 
 // 星空背景
 onMounted(() => {
@@ -189,7 +200,15 @@ onMounted(() => {
         <div class="FgX"></div>
 
         <!-- 文章1 -->
-        <div class="wengZhangAn">
+        <div
+          ref="leiBiaoRef"
+          class="wengZhangAn"
+          @click="
+            $router.push('/headJump/wenZhang1'),
+              updateValue(),
+              wenZhang.getXSS(getwenZhang[0].id - 1)
+          "
+        >
           <div class="image-container">
             <img class="wengZhang1imgTp" :src="getwenZhang[0].imageUrl" />
           </div>
@@ -210,7 +229,16 @@ onMounted(() => {
         </div>
 
         <!-- 文章2 -->
-        <div class="wengZhangAn" v-if="wenZhangXs">
+        <div
+          ref="leiBiaoRef"
+          class="wengZhangAn"
+          @click="
+            $router.push('/headJump/wenZhang1'),
+              updateValue(),
+              wenZhang.getXSS(getwenZhang[1].id - 1)
+          "
+          v-if="wenZhangXs"
+        >
           <div class="wengZhang1BiaoTi">
             <div>
               <div class="wengZhang1biaoti">{{ getwenZhang[1].biaoTi }}</div>
@@ -222,16 +250,20 @@ onMounted(() => {
                 >&ensp;Updated
                 {{ getwenZhang[1].shiJ }}
               </div>
-              <div class="wengZhang1FuBiaoTi">{{ getwenZhang[1].content }}</div>
+              <div class="wengZhang1FuBiaoTi">
+                {{ getwenZhang[1].content }}
+              </div>
             </div>
           </div>
           <div class="image-container2">
             <img class="wengZhang2imgTp" :src="getwenZhang[1].imageUrl" />
           </div>
         </div>
+
         <!-- 分页 -->
         <div class="fenYe">
           <!-- 监听el-pagination 返回值是你点击的页码 -->
+          <!-- current-change 事件来获取用户点击的页码。 -->
           <el-pagination
             class="msg-pagination-container"
             background
@@ -263,7 +295,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style>
+<style scoped>
 /* 包裹背景的样式  相对  等级1 */
 .parent {
   position: relative;
@@ -452,27 +484,6 @@ onMounted(() => {
   display: flex;
   justify-content: center;
 }
-.msg-pagination-container.is-background .el-pager li {
-  /*对页数的样式进行修改*/
-  background-color: #101316;
-  color: #dfdfdf;
-}
-.msg-pagination-container.is-background .btn-next {
-  /*对下一页的按钮样式进行修改*/
-  background-color: #101316;
-  color: #fff;
-}
-.msg-pagination-container.is-background .btn-prev {
-  /*对上一页的按钮样式进行修改*/
-  background-color: #101316;
-  color: #fff;
-}
-.el-pagination.is-background .btn-prev:disabled {
-  background-color: #101316;
-}
-.el-pagination.is-background .btn-next:disabled {
-  background-color: #101316;
-}
 
 /* 用户 */
 .Yh {
@@ -501,5 +512,32 @@ onMounted(() => {
   display: grid;
   place-items: center;
   margin-top: 20px;
+}
+
+.conceal {
+  display: none;
+}
+</style>
+<style>
+.msg-pagination-container.is-background .el-pager li {
+  /*对页数的样式进行修改*/
+  background-color: #101316;
+  color: #dfdfdf;
+}
+.msg-pagination-container.is-background .btn-next {
+  /*对下一页的按钮样式进行修改*/
+  background-color: #101316;
+  color: #fff;
+}
+.msg-pagination-container.is-background .btn-prev {
+  /*对上一页的按钮样式进行修改*/
+  background-color: #101316;
+  color: #fff;
+}
+.el-pagination.is-background .btn-prev:disabled {
+  background-color: #101316;
+}
+.el-pagination.is-background .btn-next:disabled {
+  background-color: #101316;
 }
 </style>

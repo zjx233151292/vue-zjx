@@ -54,6 +54,11 @@ const router = createRouter({
         {
           path: '/headJump/headJumpInRegardTo',
           component: () => import('@/views/headJump/headJumpInRegardTo.vue')
+        },
+        // 文章
+        {
+          path: '/headJump/wenZhang1',
+          component: () => import('@/views/leiBiao/headWenZhang1.vue')
         }
       ]
     }
