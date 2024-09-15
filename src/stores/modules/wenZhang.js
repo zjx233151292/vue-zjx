@@ -13,6 +13,7 @@ export const useWengZhangStore = defineStore('big-wengZhang', () => {
       shiJ: '2024-09-04',
       biaoTi: '标题1',
       content: '内容1',
+      // 开发地址/public/shoYe/img/11.png  打包地址/shoYe/img/11.png
       imageUrl: '/public/shoYe/img/11.png',
       id: 1
     },
@@ -20,6 +21,7 @@ export const useWengZhangStore = defineStore('big-wengZhang', () => {
       shiJ: '2024-09-04',
       biaoTi: '标题2',
       content: '内容2',
+      // 开发地址/public/shoYe/img/12.png  打包地址/shoYe/img/12.png
       imageUrl: '/public/shoYe/img/12.png',
       id: 2
     },
@@ -27,6 +29,7 @@ export const useWengZhangStore = defineStore('big-wengZhang', () => {
       shiJ: '2024-09-04',
       biaoTi: '标题3',
       content: '内容3',
+      // 开发地址/public/shoYe/img/25.png  打包地址/shoYe/img/25.png
       imageUrl: '/public/shoYe/img/25.png',
       id: 3
     },
@@ -34,6 +37,7 @@ export const useWengZhangStore = defineStore('big-wengZhang', () => {
       shiJ: '2024-09-04',
       biaoTi: '标题4',
       content: '内容4',
+      // 开发地址/public/shoYe/img/26.png  打包地址/shoYe/img/26.png
       imageUrl: '/public/shoYe/img/26.png',
       id: 4
     },
@@ -41,6 +45,7 @@ export const useWengZhangStore = defineStore('big-wengZhang', () => {
       shiJ: '2024-09-04',
       biaoTi: '标题5',
       content: '内容5',
+      // 开发地址/public/shoYe/img/35.png  打包地址/shoYe/img/35.png
       imageUrl: '/public/shoYe/img/35.png',
       id: 5
     },
@@ -48,6 +53,7 @@ export const useWengZhangStore = defineStore('big-wengZhang', () => {
       shiJ: '2024-09-04',
       biaoTi: '标题6',
       content: '内容6',
+      // 开发地址/public/shoYe/img/16.png  打包地址/shoYe/img/16.png
       imageUrl: '/public/shoYe/img/16.png',
       id: 6
     },
@@ -55,6 +61,7 @@ export const useWengZhangStore = defineStore('big-wengZhang', () => {
       shiJ: '2024-09-04',
       biaoTi: '标题7',
       content: '内容7',
+      // 开发地址/public/shoYe/img/30.png  打包地址/shoYe/img/30.png
       imageUrl: '/public/shoYe/img/30.png',
       id: 7
     },
@@ -62,6 +69,7 @@ export const useWengZhangStore = defineStore('big-wengZhang', () => {
       shiJ: '2024-09-04',
       biaoTi: '标题8',
       content: '内容8',
+      // 开发地址/public/shoYe/img/29.png  打包地址/shoYe/img/29.png
       imageUrl: '/public/shoYe/img/29.png',
       id: 8
     },
@@ -69,6 +77,7 @@ export const useWengZhangStore = defineStore('big-wengZhang', () => {
       shiJ: '2024-09-04',
       biaoTi: '标题9',
       content: '内容9',
+      // 开发地址/public/shoYe/img/28.png  打包地址/shoYe/img/28.png
       imageUrl: '/public/shoYe/img/28.png',
       id: 9
     },
@@ -76,6 +85,7 @@ export const useWengZhangStore = defineStore('big-wengZhang', () => {
       shiJ: '2024-09-05',
       biaoTi: '标题10',
       content: '内容10',
+      // 开发地址/public/shoYe/img/20.png  打包地址/shoYe/img/20.png
       imageUrl: '/public/shoYe/img/20.png',
       id: 10
     }

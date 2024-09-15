@@ -10,8 +10,8 @@ export const useYunHuStore = defineStore('yunHuXinXi', () => {
     Categories: '0',
     // 跳转地址
     url: '',
-    // 图片地址
-    imgurl: '/src/assets/shoYe/img/2.png',
+    // 图片地址  开发地址/public/shoYe/img/2.png  打包地址/shoYe/img/2.png
+    imgurl: '/public/shoYe/img/2.png',
     // UV
     uv: '46000980',
     // PV
